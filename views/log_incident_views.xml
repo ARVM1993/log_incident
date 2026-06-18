@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =========================
+         VISTA LISTA (TREE)
+    ========================== -->
+    <record id="view_log_incident_tree" model="ir.ui.view">
+        <field name="name">log.incident.tree</field>
+        <field name="model">log.incident</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="task_id"/>
+                <field name="project_name"/>
+                <field name="impact"/>
+                <field name="state"/>
+                <field name="detection_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =========================
+         VISTA FORMULARIO
+    ========================== -->
+    <record id="view_log_incident_form" model="ir.ui.view">
+        <field name="name">log.incident.form</field>
+        <field name="model">log.incident</field>
+        <field name="arch" type="xml">
+            <form string="Incident Log">
+                <sheet>
+
+                    <group string="Informacion General">
+                        <field name="task_id"/>
+                        <field name="project_name"/>
+                        <field name="module"/>
+                        <field name="client"/>
+                        <field name="environment"/>
+                    </group>
+
+                    <group string="Descripcion">
+                        <field name="summary"/>
+                        <field name="description"/>
+                        <field name="impact"/>
+                        <field name="impact_description"/>
+                    </group>
+
+                    <group string="Deteccion">
+                        <field name="detection_method"/>
+                        <field name="detection_date"/>
+                    </group>
+
+                    <group string="Resolucion">
+                        <field name="solution_description"/>
+                        <field name="action_taken"/>
+                        <field name="modified_files"/>
+                    </group>
+
+                    <group string="Estado">
+                        <field name="state"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =========================
+         ACCIÓN (IMPORTANTE)
+    ========================== -->
+    <record id="action_log_incident" model="ir.actions.act_window">
+        <field name="name">Incident Logs</field>
+        <field name="res_model">log.incident</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- =========================
+         MENÚ PRINCIPAL
+    ========================== -->
+    <menuitem id="menu_log_root"
+              name="Incident Logs"
+              sequence="10"/>
+
+    <menuitem id="menu_log_incident"
+              name="Logs"
+              parent="menu_log_root"
+              action="action_log_incident"/>
+
+</odoo>
